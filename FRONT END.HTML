@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dogecoin Inscriber</title>
+<!-- Add your CSS here -->
+</head>
+<body>
+  <h1>Welcome to the Dogecoin online inscriber</h1>
+  
+  <form id="inscriptionForm">
+    <input type="text" name="address" placeholder="Enter a taproot address from an ordinals wallet">
+    <input type="file" name="fileData" multiple>
+    
+    <label for="feeRate">Select a feerate (sats/vB):</label>
+    <input type="number" name="feeRate" value="24">
+    
+    <label for="satoshis">Sats in inscription (padding):</label>
+    <input type="number" name="satoshis" value="10000">
+    
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById('inscriptionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      
+      fetch('/inscribe', {
+        method: 'POST',
+        body: formData
+      }).then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Inscription successful. Transaction ID: ' + data.txid);
+          } else {
+            alert('Error: ' + data.message);
+          }
+        }).catch(error => {
+          alert('An error occurred: ' + error.message);
+        });
+    });
+  </script>
+</body>
+</html>
