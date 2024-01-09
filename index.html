@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dogecoin Inscriber</title>
+<link rel="stylesheet" href="style.css">
+<script src="browser-polyfill.min.js"></script>
+<script src="disable-hide-popup.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Dogecoin online inscriber</h1>
+    <form id="inscriptionForm">
+      <label for="address">Receiving address (taproot)</label>
+      <input type="text" id="address" name="address" placeholder="Enter a taproot address from an ordinals wallet" required>
+
+      <label for="fileInput">Please choose what you want to inscribe:</label>
+      <input type="file" id="fileInput" name="files" multiple required>
+      
+      <button type="button" id="checkFiles">Check if file(s) are inscribed already</button>
+      
+      <label for="feeRate">Select a feerate (sats/vB):</label>
+      <input type="range" id="feeRate" name="feeRate" min="24" max="75" value="24">
+      <div class="feeRateDisplay">
+        <span>Min: 24</span>
+        <span>Mid: 75</span>
+        <span>Max: 75</span>
+      </div>
+      
+      <label for="satoshis">Sats in inscription (padding):</label>
+      <input type="number" id="satoshis" name="satoshis" value="10000" required>
+      
+      <button type="submit" id="submit">Submit</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
